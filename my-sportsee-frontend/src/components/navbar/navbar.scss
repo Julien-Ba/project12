@@ -1,0 +1,16 @@
+@use '../../style/colors';
+@use '../../style/placeholders';
+
+.navbar {
+    width: 80%;
+    align-self: center;
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        color: colors.$text-lightest;
+        font-size: 24px;
+        font-weight: 500;
+    }
+}

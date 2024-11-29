@@ -1,0 +1,40 @@
+@use '../../style/colors';
+@use '../../style/mixins' as *;
+@use '../../style/placeholders';
+
+$sidebar-width: 116px;
+$copyright-font-size: 12px;
+
+.sidebar {
+    flex: 1;
+    width: $sidebar-width;
+    padding: 26px;
+    background-color: colors.$bg-darker;
+
+    &__activities {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        @extend %flex-center;
+        flex-direction: column;
+        gap: 20px;
+
+        &-item {
+            @include size(64px);
+            @extend %flex-center;
+            background-color: colors.$bg-lighter;
+            border-radius: 6px;
+        }
+    }
+
+    &__copyright {
+        position: absolute;
+        bottom: 6%;
+        left: calc(($sidebar-width + $copyright-font-size) / 2);
+        transform: rotate(-90deg);
+        transform-origin: left bottom;
+        color: colors.$text-lightest;
+        font-size: $copyright-font-size;
+        font-weight: 500;
+    }
+}
