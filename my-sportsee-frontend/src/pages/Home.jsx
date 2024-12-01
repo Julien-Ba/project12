@@ -3,6 +3,11 @@ import './home.scss';
 import { api } from '../services/api';
 import Greetings from '../components/greetings/Greetings';
 import Sidebar from '../components/sidebar/Sidebar';
+import DailyActivityChart from '../components/charts/daily-activity-chart/DailyActivityChart';
+import NutritionMetrics from '../components/nutrition-metrics/NutritionMetrics';
+import PerformanceRadarChart from '../components/charts/performance-radar-chart/PerformanceRadarChart';
+import ScoreGauge from '../components/charts/score-gauge/ScoreGauge';
+import SessionDurationGraph from '../components/charts/session-duration-graph/SessionDurationGraph';
 
 export default function Home() {
     const [userData, setUserData] = useState(null);
@@ -42,6 +47,11 @@ export default function Home() {
             <Sidebar />
             <div className='home__summary'>
                 <Greetings user={firstName} />
+                <DailyActivityChart />
+                <NutritionMetrics />
+                <SessionDurationGraph />
+                <PerformanceRadarChart />
+                <ScoreGauge />
             </div>
         </main>
     );
