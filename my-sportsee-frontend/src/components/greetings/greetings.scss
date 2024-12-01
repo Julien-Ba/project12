@@ -1,0 +1,18 @@
+@use '../../style/colors';
+
+.greetings {
+    &__title {
+        margin-block-end: 20px;
+        color: colors.$text-darker;
+        font-size: 48px;
+        font-weight: 500;
+
+        &-name {
+            color: colors.$primary;
+        }
+    }
+
+    &__description {
+        font-size: 18px;
+    }
+}

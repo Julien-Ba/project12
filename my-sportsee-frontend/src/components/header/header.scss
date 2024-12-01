@@ -4,15 +4,13 @@
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
     padding: 20px 40px;
     background-color: colors.$bg-darker;
 
     &__logo {
-        width: 20%;
-        min-width: fit-content;
-        display: flex;
-        align-items: center;
+        @extend %flex-center;
         gap: 10px;
 
         &-title {

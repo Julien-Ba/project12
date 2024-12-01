@@ -2,13 +2,10 @@
 @use '../../style/placeholders';
 
 .navbar {
-    width: 80%;
-    align-self: center;
+    display: contents;
 
     &__list {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
+        display: contents;
         color: colors.$text-lightest;
         font-size: 24px;
         font-weight: 500;
