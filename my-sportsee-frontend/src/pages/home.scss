@@ -9,8 +9,9 @@
         @include size(100%);
         padding: 3% 6%;
         display: grid;
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: 0.6fr 1fr 0.8fr;
         grid-template-columns: repeat(4, 1fr);
+        gap: 40px 35px;
 
         .greetings {
             grid-column: 1/-1;
