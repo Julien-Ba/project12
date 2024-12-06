@@ -23,7 +23,7 @@ export default function NutritionMetrics({ data }) {
                         <img src={category.icon} alt={category.name} />
                     </div>
                     <div className='nutrition__card__text'>
-                        <p className='nutrittion__card__text-value'>
+                        <p className='nutrition__card__text-value'>
                             {category.value}
                             {category.units}
                         </p>
