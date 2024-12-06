@@ -2,19 +2,27 @@
 @use '../style/placeholders';
 
 .home {
-    @include size(100%);
+    flex: 1;
     display: flex;
 
     &__summary {
         @include size(100%);
-        padding: 3% 6%;
+        padding: max(20px, 2%) max(20px, 5%);
         display: grid;
-        grid-template-rows: 0.6fr 1fr 0.8fr;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 40px 35px;
+        grid-template-rows: minmax(auto, 132px) minmax(auto, 320px) minmax(auto, 263px);
+        grid-template-columns: repeat(4, minmax(auto, 258px));
+        gap: 40px 30px;
 
         .greetings {
             grid-column: 1/-1;
+        }
+
+        .daily-activity {
+            grid-column: span 3;
+        }
+
+        .nutrition {
+            grid-row: span 2;
         }
     }
 }

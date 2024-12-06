@@ -7,6 +7,10 @@
 
 #root {
     width: 100%;
+    max-width: 1728px;
     height: 100dvh;
+    max-height: 1024px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 }

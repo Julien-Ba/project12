@@ -1,0 +1,56 @@
+@use '../../../style/colors';
+@use '../../../style/mixins';
+
+.session-duration {
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: colors.$primary;
+    color: colors.$text-lightest;
+    font-weight: 500;
+
+    &__filter {
+        position: absolute;
+        width: 30%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &__title {
+        width: 70%;
+        margin: 20px;
+        font-size: 15px;
+        opacity: 0.5;
+    }
+
+    &__chart {
+        position: absolute;
+        top: 10%;
+        left: 20px;
+        width: calc(100% - 40px);
+        height: 80%;
+
+        .recharts-line-curve {
+            stroke-width: 2px;
+            opacity: 0.5;
+        }
+
+        .recharts-text {
+            opacity: 0.5;
+            font-size: 12px;
+        }
+
+        &__tooltip {
+            padding: 10px;
+            background-color: colors.$bg-lighter;
+
+            &-label {
+                color: colors.$text-darkest;
+                font-size: 8px;
+                font-weight: 500;
+            }
+        }
+    }
+}

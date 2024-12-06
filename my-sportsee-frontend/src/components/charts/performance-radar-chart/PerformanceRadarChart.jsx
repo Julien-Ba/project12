@@ -1,9 +1,40 @@
 import './performance-radar-chart.scss';
+import PropTypes from 'prop-types';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
-export default function PerformanceRadarChart() {
+export default function PerformanceRadarChart({ data }) {
+    const translations = {
+        cardio: 'Cardio',
+        energy: 'Energie',
+        endurance: 'Endurance',
+        strength: 'Force',
+        speed: 'Vitesse',
+        intensity: 'Intensité',
+    };
+    const maxScore = Math.max(...data.data.map((item) => item.value));
+    const formattedData = data.data
+        .map((item) => ({
+            subject: translations[data.kind[item.kind]],
+            score: item.value,
+            fullMark: maxScore,
+        }))
+        .reverse();
+
     return (
         <>
-            <article></article>
+            <article className='performance-radar'>
+                <ResponsiveContainer width='100%' height='100%'>
+                    <RadarChart cx='50%' cy='50%' outerRadius='72%' data={formattedData}>
+                        <PolarGrid radialLines={false} stroke='currentColor' />
+                        <PolarAngleAxis dataKey='subject' tick={{ fill: 'currentColor' }} />
+                        <Radar name='Performance' dataKey='score' fill='currentColor' />
+                    </RadarChart>
+                </ResponsiveContainer>
+            </article>
         </>
     );
 }
+
+PerformanceRadarChart.propTypes = {
+    data: PropTypes.object,
+};

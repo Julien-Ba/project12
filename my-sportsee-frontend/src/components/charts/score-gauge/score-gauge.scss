@@ -1,0 +1,28 @@
+@use '../../../style/colors';
+@use '../../../style/mixins' as *;
+@use '../../../style/placeholders';
+
+.score {
+    @extend %flex-center;
+    border-radius: 5px;
+    background-color: colors.$bg-light;
+
+    &__chart {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+
+        &-bg {
+            position: absolute;
+            @include size(55%);
+            inset: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background-color: colors.$bg-lighter;
+        }
+
+        .recharts-radial-bar-sector {
+            fill: colors.$primary;
+        }
+    }
+}

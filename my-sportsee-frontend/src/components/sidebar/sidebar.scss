@@ -5,6 +5,10 @@
 $sidebar-width: 116px;
 $copyright-font-size: 12px;
 
+#root {
+    position: relative;
+}
+
 .sidebar {
     width: $sidebar-width;
     padding: 26px;

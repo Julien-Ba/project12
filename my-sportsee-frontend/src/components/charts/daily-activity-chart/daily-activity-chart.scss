@@ -1,0 +1,100 @@
+@use '../../../style/colors';
+@use '../../../style/mixins' as *;
+
+.daily-activity {
+    padding: 30px;
+    border-radius: 5px;
+    background-color: colors.$bg-light;
+
+    &__header {
+        margin-block-end: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__title {
+            color: colors.$text-darker;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        &__legend {
+            display: flex;
+            color: colors.$text-light;
+            font-size: 14px;
+            font-weight: 500;
+
+            &-item {
+                display: flex;
+                align-items: center;
+                padding-inline-start: 40px;
+
+                &::before {
+                    content: '';
+                    display: block;
+                    @include size(7px);
+                    margin-inline-end: 14px;
+                    border-radius: 50%;
+                }
+
+                &--weight::before {
+                    background-color: colors.$bg-dark;
+                }
+
+                &--calories::before {
+                    background-color: colors.$secondary;
+                }
+            }
+        }
+    }
+
+    &__chart {
+        width: 100%;
+        height: 75%;
+
+        .recharts-text {
+            color: colors.$text-lighter;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .recharts-cartesian-axis-line {
+            stroke: rgb(222, 222, 222);
+            stroke-width: 2px;
+        }
+
+        .recharts-cartesian-axis-ticks > :last-child:has([orientation='right']) {
+            transform: translateY(-5px);
+        }
+
+        .recharts-rectangle {
+            &[name='Poids (kg)'] {
+                color: colors.$bg-dark;
+            }
+
+            &[name='Calories brûlées (kCal)'] {
+                color: colors.$secondary;
+            }
+        }
+
+        .recharts-tooltip-cursor {
+            background-color: colors.$bg-dark;
+            opacity: 0.5;
+        }
+
+        &__tooltip {
+            padding: 14px 7px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            background-color: colors.$secondary;
+
+            &-label {
+                color: colors.$text-lightest;
+                font-size: 7px;
+                font-weight: 500;
+            }
+        }
+    }
+}

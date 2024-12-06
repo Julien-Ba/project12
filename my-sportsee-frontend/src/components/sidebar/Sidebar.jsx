@@ -1,5 +1,5 @@
 import './sidebar.scss';
-import { Biking, Swimming, Weight, Yoga } from '../../assets/icons';
+import { Biking, Swimming, Weightlifting, Yoga } from '../../assets/icons';
 
 export default function Sidebar() {
     return (
@@ -16,7 +16,7 @@ export default function Sidebar() {
                         <img src={Biking} alt='Biking' />
                     </li>
                     <li className='sidebar__activities-item'>
-                        <img src={Weight} alt='Weight' />
+                        <img src={Weightlifting} alt='Weight' />
                     </li>
                 </ul>
                 <p className='sidebar__copyright'>Copiryght, SportSee 2020</p>
