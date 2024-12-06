@@ -27,7 +27,7 @@ export default function NutritionMetrics({ data }) {
                             {category.value}
                             {category.units}
                         </p>
-                        <h4 className='nutrittion__card__text-name'>{category.name}</h4>
+                        <h4 className='nutrition__card__text-name'>{category.name}</h4>
                     </div>
                 </div>
             ))}
