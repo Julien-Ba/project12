@@ -1,6 +1,6 @@
 import './score-gauge.scss';
-import PropTypes from 'prop-types';
-import { PolarAngleAxis, RadialBarChart, ResponsiveContainer, RadialBar } from 'recharts';
+import { createRangeValidator } from '../../../propTypes/validators';
+import { RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts';
 
 export default function ScoreGauge({ data }) {
     const score = [{ name: 'Score', value: data }];
@@ -42,6 +42,8 @@ export default function ScoreGauge({ data }) {
         </>
     );
 }
+
+const isPercent = createRangeValidator(0, 1);
 ScoreGauge.propTypes = {
-    data: PropTypes.number,
+    data: isPercent.isRequired,
 };

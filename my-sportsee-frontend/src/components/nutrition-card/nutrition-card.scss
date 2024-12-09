@@ -1,0 +1,46 @@
+@use '../../style/colors';
+@use '../../style/mixins' as *;
+@use '../../style/placeholders';
+
+.nutrition-card {
+    width: 100%;
+    aspect-ratio: 2/1;
+    border-radius: 5px;
+    @extend %flex-center;
+    gap: 40px;
+    background-color: colors.$bg-light;
+
+    &__icon {
+        @include size(60px);
+        border-radius: 5px;
+        @extend %flex-center;
+        background-color: colors.$red-faded;
+
+        &--calories {
+            background-color: colors.$red-faded;
+        }
+        &--proteines {
+            background-color: colors.$blue-faded;
+        }
+        &--glucides {
+            background-color: colors.$yellow-faded;
+        }
+        &--lipides {
+            background-color: colors.$pink-faded;
+        }
+    }
+
+    &__text {
+        &-value {
+            color: colors.$text-dark;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        &-name {
+            color: colors.$text-light;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+}

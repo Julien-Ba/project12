@@ -1,16 +1,16 @@
 import './session-duration-graph.scss';
 import PropTypes from 'prop-types';
-import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import { createCombinedValidator, createRangeValidator, isInteger } from '../../../propTypes/validators';
+import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 export default function SessionDurationGraph({ data }) {
     function formatXAxis(tickItem) {
         const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-        const dayIndex = (tickItem - 1) % 7;
-        return days[dayIndex];
+        const index = (tickItem - 1) % 7;
+        return days[index];
     }
 
-    function renderTooltipContent(o) {
-        const { payload } = o;
+    function renderTooltipContent({ payload }) {
         try {
             const value = payload[0].value;
             return (
@@ -60,6 +60,13 @@ export default function SessionDurationGraph({ data }) {
     );
 }
 
+const isDayOfWeek = createCombinedValidator([isInteger, createRangeValidator(1, 7)]);
+
 SessionDurationGraph.propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(
+        PropTypes.exact({
+            day: isDayOfWeek,
+            sessionLength: isInteger,
+        }).isRequired
+    ).isRequired,
 };

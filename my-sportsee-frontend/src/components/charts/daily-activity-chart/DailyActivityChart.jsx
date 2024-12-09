@@ -1,9 +1,25 @@
 import './daily-activity-chart.scss';
 import PropTypes from 'prop-types';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from 'recharts';
-import DailyActivityTooltip from './DailyActivityTooltip';
+import { isDateFormat, isInteger } from '../../../propTypes/validators';
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 export default function DailyActivityChart({ data }) {
+    function renderTooltip({ payload }) {
+        try {
+            const kg = payload[0]['value'];
+            const kCal = payload[1]['value'];
+
+            return (
+                <div className='daily-activity__chart__tooltip'>
+                    <p className='daily-activity__chart__tooltip-label'>{`${kg}kg`}</p>
+                    <p className='daily-activity__chart__tooltip-label'>{`${kCal}Kcal`}</p>
+                </div>
+            );
+        } catch {
+            return null;
+        }
+    }
+
     return (
         <>
             <article className='daily-activity'>
@@ -21,7 +37,7 @@ export default function DailyActivityChart({ data }) {
                 <div className='daily-activity__chart'>
                     <ResponsiveContainer>
                         <BarChart data={data} barSize={7} barGap={8}>
-                            <Tooltip offset={40} content={<DailyActivityTooltip />} animationDuration={300} />
+                            <Tooltip offset={40} content={renderTooltip} animationDuration={300} />
                             <CartesianGrid strokeDasharray='2' vertical={false} />
                             <XAxis
                                 dataKey='day'
@@ -64,5 +80,11 @@ export default function DailyActivityChart({ data }) {
 }
 
 DailyActivityChart.propTypes = {
-    data: PropTypes.array,
+    data: PropTypes.arrayOf(
+        PropTypes.exact({
+            day: isDateFormat, // YYYY-MM-DD
+            kilogram: isInteger,
+            calories: isInteger,
+        })
+    ).isRequired,
 };

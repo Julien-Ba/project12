@@ -1,13 +1,13 @@
 import './home.scss';
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import Greetings from '../components/greetings/Greetings';
-import Sidebar from '../components/sidebar/Sidebar';
 import DailyActivityChart from '../components/charts/daily-activity-chart/DailyActivityChart';
+import Greetings from '../components/greetings/Greetings';
 import NutritionMetrics from '../components/nutrition-metrics/NutritionMetrics';
 import PerformanceRadarChart from '../components/charts/performance-radar-chart/PerformanceRadarChart';
 import ScoreGauge from '../components/charts/score-gauge/ScoreGauge';
 import SessionDurationGraph from '../components/charts/session-duration-graph/SessionDurationGraph';
+import Sidebar from '../components/sidebar/Sidebar';
 
 export default function Home() {
     const [userData, setUserData] = useState(null);
@@ -44,7 +44,6 @@ export default function Home() {
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error loading data</div>;
     if (!userData || !userActivity || !userAverageSession || !userPerformance) return <div>No user data found</div>;
-
     return (
         <main className='home'>
             <Sidebar />

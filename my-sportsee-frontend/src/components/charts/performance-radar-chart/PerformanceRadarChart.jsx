@@ -1,6 +1,7 @@
 import './performance-radar-chart.scss';
 import PropTypes from 'prop-types';
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
+import { isInteger } from '../../../propTypes/validators';
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts';
 
 export default function PerformanceRadarChart({ data }) {
     const translations = {
@@ -36,5 +37,13 @@ export default function PerformanceRadarChart({ data }) {
 }
 
 PerformanceRadarChart.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.shape({
+        kind: PropTypes.objectOf(PropTypes.string).isRequired,
+        data: PropTypes.arrayOf(
+            PropTypes.exact({
+                value: isInteger,
+                kind: isInteger,
+            })
+        ).isRequired,
+    }).isRequired,
 };

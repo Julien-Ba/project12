@@ -1,6 +1,8 @@
 import './nutrition-metrics.scss';
 import PropTypes from 'prop-types';
+import { isInteger } from '../../propTypes/validators';
 import { Apple, Burger, Chicken, Fire } from '../../assets/icons';
+import NutritionCard from '../nutrition-card/NutritionCard';
 
 const NUTRITION_MAPPING = {
     calorieCount: { name: 'Calories', units: 'KCal', icon: Fire },
@@ -18,18 +20,7 @@ export default function NutritionMetrics({ data }) {
     return (
         <article className='nutrition'>
             {formattedData.map((category) => (
-                <div className='nutrition__card nutrition__card' key={category.name}>
-                    <div className={`nutrition__card__icon nutrition__card__icon-${category.name}`}>
-                        <img src={category.icon} alt={category.name} />
-                    </div>
-                    <div className='nutrition__card__text'>
-                        <p className='nutrition__card__text-value'>
-                            {category.value}
-                            {category.units}
-                        </p>
-                        <h4 className='nutrition__card__text-name'>{category.name}</h4>
-                    </div>
-                </div>
+                <NutritionCard key={category.name} {...category} />
             ))}
         </article>
     );
@@ -37,9 +28,9 @@ export default function NutritionMetrics({ data }) {
 
 NutritionMetrics.propTypes = {
     data: PropTypes.shape({
-        calorieCount: PropTypes.number,
-        proteinCount: PropTypes.number,
-        carbohydrateCount: PropTypes.number,
-        lipidCount: PropTypes.number,
+        calorieCount: isInteger,
+        proteinCount: isInteger,
+        carbohydrateCount: isInteger,
+        lipidCount: isInteger,
     }),
 };
