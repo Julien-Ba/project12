@@ -1,5 +1,5 @@
-@use '../style/mixins' as *;
-@use '../style/placeholders';
+@use '../../style/colors';
+@use '../../style/mixins' as *;
 
 .home {
     flex: 1;
@@ -25,4 +25,10 @@
             grid-row: span 2;
         }
     }
+}
+
+.error {
+    margin: auto;
+    color: colors.$text-dark;
+    font-size: 48px;
 }

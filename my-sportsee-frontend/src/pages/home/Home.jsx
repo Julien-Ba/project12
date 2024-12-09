@@ -1,15 +1,18 @@
 import './home.scss';
 import { useState, useEffect } from 'react';
-import { api } from '../services/api';
-import DailyActivityChart from '../components/charts/daily-activity-chart/DailyActivityChart';
-import Greetings from '../components/greetings/Greetings';
-import NutritionMetrics from '../components/nutrition-metrics/NutritionMetrics';
-import PerformanceRadarChart from '../components/charts/performance-radar-chart/PerformanceRadarChart';
-import ScoreGauge from '../components/charts/score-gauge/ScoreGauge';
-import SessionDurationGraph from '../components/charts/session-duration-graph/SessionDurationGraph';
-import Sidebar from '../components/sidebar/Sidebar';
+import { api } from '../../services/api';
+import DailyActivityChart from '../../components/charts/daily-activity-chart/DailyActivityChart';
+import Greetings from '../../components/greetings/Greetings';
+import NutritionMetrics from '../../components/nutrition-metrics/NutritionMetrics';
+import PerformanceRadarChart from '../../components/charts/performance-radar-chart/PerformanceRadarChart';
+import ScoreGauge from '../../components/charts/score-gauge/ScoreGauge';
+import SessionDurationGraph from '../../components/charts/session-duration-graph/SessionDurationGraph';
+import Sidebar from '../../components/sidebar/Sidebar';
+import { useParams } from 'react-router-dom';
 
 export default function Home() {
+    const { id } = useParams();
+
     const [userData, setUserData] = useState(null);
     const [userActivity, setUserActicity] = useState(null);
     const [userAverageSession, setUserAverageSession] = useState(null);
@@ -19,12 +22,12 @@ export default function Home() {
 
     useEffect(() => {
         async function fetchUserData() {
+            if (!id) return;
             try {
-                const userId = 12;
-                const userData = await api.getUserById(userId);
-                const userActivity = await api.getUserActivityById(userId);
-                const userAverageSession = await api.getUserAverageSession(userId);
-                const userPerformance = await api.getUserPerformance(userId);
+                const userData = await api.getUserById(id);
+                const userActivity = await api.getUserActivityById(id);
+                const userAverageSession = await api.getUserAverageSession(id);
+                const userPerformance = await api.getUserPerformance(id);
 
                 setUserData(userData);
                 setUserActicity(userActivity);
@@ -39,11 +42,13 @@ export default function Home() {
         }
 
         fetchUserData();
-    }, []);
+    }, [id]);
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading data</div>;
-    if (!userData || !userActivity || !userAverageSession || !userPerformance) return <div>No user data found</div>;
+    if (!id) return <h2 className='error'>No user found</h2>;
+    if (isLoading) return <h2 className='error'>Loading...</h2>;
+    if (error) return <h2 className='error'>Error loading data</h2>;
+    if (!userData || !userActivity || !userAverageSession || !userPerformance)
+        return <h2 className='error'>No user data found</h2>;
     return (
         <main className='home'>
             <Sidebar />

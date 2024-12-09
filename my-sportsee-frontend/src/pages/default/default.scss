@@ -1,0 +1,16 @@
+.default {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    .button {
+        padding: 10px 20px;
+        border: 1px solid #dbdbdb;
+        border-radius: 15px;
+        background-color: #f0f0f0;
+        font-size: 18px;
+    }
+}
