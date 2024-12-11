@@ -7,11 +7,13 @@
 
     &__summary {
         @include size(100%);
-        padding: max(20px, 2%) max(20px, 5%);
+        /* @link https://utopia.fyi/clamp/calculator?a=1024,1440,10—40|40—80 */
+        padding: clamp(10px, -63.8462px + 7.2115vw, 40px) clamp(40px, -58.4615px + 9.6154vw, 80px);
         display: grid;
         grid-template-rows: minmax(auto, 132px) minmax(auto, 320px) minmax(auto, 263px);
         grid-template-columns: repeat(4, minmax(auto, 258px));
-        gap: 40px 30px;
+        /* @link https://utopia.fyi/clamp/calculator?a=1024,1440,20—40|15—30 */
+        gap: clamp(20px, -29.2308px + 4.8077vw, 40px) clamp(15px, -21.9231px + 3.6058vw, 30px);
 
         .greetings {
             grid-column: 1/-1;
