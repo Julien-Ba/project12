@@ -5,19 +5,16 @@ import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxi
 
 export default function DailyActivityChart({ data }) {
     function renderTooltip({ payload }) {
-        try {
-            const kg = payload[0]['value'];
-            const kCal = payload[1]['value'];
+        if (!payload[0]) return;
+        const kg = payload[0]['value'];
+        const kCal = payload[1]['value'];
 
-            return (
-                <div className='daily-activity__chart__tooltip'>
-                    <p className='daily-activity__chart__tooltip-label'>{`${kg}kg`}</p>
-                    <p className='daily-activity__chart__tooltip-label'>{`${kCal}Kcal`}</p>
-                </div>
-            );
-        } catch {
-            return null;
-        }
+        return (
+            <div className='daily-activity__chart__tooltip'>
+                <p className='daily-activity__chart__tooltip-label'>{`${kg}kg`}</p>
+                <p className='daily-activity__chart__tooltip-label'>{`${kCal}Kcal`}</p>
+            </div>
+        );
     }
 
     return (
