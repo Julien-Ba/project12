@@ -14,8 +14,8 @@ export default function ScoreGauge({ data }) {
                         data={score}
                         cx='50%'
                         cy='50%'
-                        innerRadius={75}
-                        outerRadius={85}
+                        innerRadius={'60%'}
+                        outerRadius={'70%'}
                         startAngle={90}
                         endAngle={90 + 360 * data}
                     >
