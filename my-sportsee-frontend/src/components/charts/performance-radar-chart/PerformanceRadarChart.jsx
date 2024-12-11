@@ -22,17 +22,15 @@ export default function PerformanceRadarChart({ data }) {
         .reverse();
 
     return (
-        <>
-            <article className='performance-radar'>
-                <ResponsiveContainer width='100%' height='100%'>
-                    <RadarChart cx='50%' cy='50%' outerRadius='72%' data={formattedData}>
-                        <PolarGrid radialLines={false} stroke='currentColor' />
-                        <PolarAngleAxis dataKey='subject' tick={{ fill: 'currentColor' }} />
-                        <Radar name='Performance' dataKey='score' fill='currentColor' />
-                    </RadarChart>
-                </ResponsiveContainer>
-            </article>
-        </>
+        <article className='performance-radar'>
+            <ResponsiveContainer width='100%' height='100%'>
+                <RadarChart cx='50%' cy='50%' outerRadius='72%' data={formattedData}>
+                    <PolarGrid radialLines={false} stroke='currentColor' />
+                    <PolarAngleAxis dataKey='subject' tick={{ fill: 'currentColor' }} />
+                    <Radar name='Performance' dataKey='score' fill='currentColor' />
+                </RadarChart>
+            </ResponsiveContainer>
+        </article>
     );
 }
 
