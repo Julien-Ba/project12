@@ -5,9 +5,11 @@
 .nutrition-card {
     width: 100%;
     aspect-ratio: 2/1;
+    padding-inline: 30px;
     border-radius: 5px;
-    @extend %flex-center;
-    gap: 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
     background-color: colors.$bg-light;
 
     &__icon {
