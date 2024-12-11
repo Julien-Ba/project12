@@ -23,7 +23,7 @@ export default function PerformanceRadarChart({ data }) {
 
     return (
         <article className='performance-radar'>
-            <ResponsiveContainer width='100%' height='100%'>
+            <ResponsiveContainer>
                 <RadarChart cx='50%' cy='50%' outerRadius='72%' data={formattedData}>
                     <PolarGrid radialLines={false} stroke='currentColor' />
                     <PolarAngleAxis dataKey='subject' tick={{ fill: 'currentColor' }} />
