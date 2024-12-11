@@ -1,9 +1,12 @@
 import './session-duration-graph.scss';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { createCombinedValidator, createRangeValidator, isInteger } from '../../../propTypes/validators';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 export default function SessionDurationGraph({ data }) {
+    const [filterWidth, setFilterWidth] = useState(0);
+
     const paddedData = [
         // mock extra data to allow the line to overflow
         { day: 0, sessionLength: data[0].sessionLength },
@@ -19,10 +22,9 @@ export default function SessionDurationGraph({ data }) {
     }
 
     function renderTooltipContent({ payload }) {
-        if (!payload || !payload[0]) return null;
-        const day = payload[0].payload.day;
-        if (day < 1 || day > 7) return null;
-        const value = payload[0].value;
+        const value = payload?.[0]?.value;
+        const day = payload?.[0]?.payload?.day;
+        if (!value || day < 1 || day > 7) return null;
         return (
             <div className='session-duration__chart__tooltip'>
                 <p className='session-duration__chart__tooltip-label'>{`${value} min`}</p>
@@ -31,23 +33,17 @@ export default function SessionDurationGraph({ data }) {
     }
 
     function handleMouseMove(state) {
-        if (state.activePayload && state.activePayload[0]) {
+        if (state.activePayload) {
             const currentDay = state.activePayload[0].payload.day;
             // not actually 100% and offset to match the overflow of days 0 & 8, cf .session-duration__chart
             // ((8 - currentDay) / 8) * width% - left%
             const widthPercentage = ((paddedData.length - (currentDay + 1)) / (paddedData.length - 1)) * 110 - 5;
-            const filter = document.querySelector('.session-duration__filter');
-            if (filter) {
-                filter.style.width = `${widthPercentage}%`;
-            }
+            setFilterWidth(widthPercentage);
         }
     }
 
     function handleMouseLeave() {
-        const filter = document.querySelector('.session-duration__filter');
-        if (filter) {
-            filter.style.width = '0%';
-        }
+        setFilterWidth(0);
     }
 
     function renderActiveDot({ cx, cy, payload }) {
@@ -64,7 +60,7 @@ export default function SessionDurationGraph({ data }) {
 
     return (
         <article className='session-duration'>
-            <div className='session-duration__filter'></div>
+            <div className='session-duration__filter' style={{ width: `${filterWidth}%` }} />
             <h3 className='session-duration__title'>Durée moyenne des sessions</h3>
             <div className='session-duration__chart'>
                 <ResponsiveContainer>
