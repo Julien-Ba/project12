@@ -1,4 +1,3 @@
-// Generic isRequired helper
 function createIsRequired(validator) {
     return (props, propName, componentName) => {
         const value = props[propName];
