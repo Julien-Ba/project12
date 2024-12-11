@@ -1,5 +1,6 @@
 import './home.scss';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import DailyActivityChart from '../../components/charts/daily-activity-chart/DailyActivityChart';
 import Greetings from '../../components/greetings/Greetings';
@@ -8,7 +9,6 @@ import PerformanceRadarChart from '../../components/charts/performance-radar-cha
 import ScoreGauge from '../../components/charts/score-gauge/ScoreGauge';
 import SessionDurationGraph from '../../components/charts/session-duration-graph/SessionDurationGraph';
 import Sidebar from '../../components/sidebar/Sidebar';
-import { useParams } from 'react-router-dom';
 
 export default function Home() {
     const { id } = useParams();
@@ -49,6 +49,7 @@ export default function Home() {
     if (error) return <h2 className='error'>Error loading data</h2>;
     if (!userData || !userActivity || !userAverageSession || !userPerformance)
         return <h2 className='error'>No user data found</h2>;
+
     return (
         <main className='home'>
             <Sidebar />
