@@ -18,11 +18,11 @@ export default function NutritionMetrics({ data }) {
     }));
 
     return (
-        <article className='nutrition'>
+        <aside className='nutrition'>
             {formattedData.map((category) => (
                 <NutritionCard key={category.name} {...category} />
             ))}
-        </article>
+        </aside>
     );
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function NutritionCard({ name, value, units, icon }) {
     return (
-        <div className='nutrition-card'>
+        <article className='nutrition-card'>
             <div className={`nutrition-card__icon nutrition-card__icon--${name.toLowerCase()}`}>
                 <img src={icon} alt={name} />
             </div>
@@ -14,7 +14,7 @@ export default function NutritionCard({ name, value, units, icon }) {
                 </p>
                 <h4 className='nutrition-card__text-name'>{name}</h4>
             </div>
-        </div>
+        </article>
     );
 }
 
