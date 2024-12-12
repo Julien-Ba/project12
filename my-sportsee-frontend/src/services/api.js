@@ -6,15 +6,9 @@ const isProd = false;
 export const api = {
     async getUserById(id) {
         try {
-            if (isProd) {
-                const response = await fetch(`${BASE_URL}/user/${id}`);
-                return await response.json();
-            }
-            const userData = USER_MAIN_DATA.find((user) => user.id === parseInt(id));
-            if (!userData) {
-                throw new Error(`User with id ${id} not found`);
-            }
-            return { data: userData };
+            if (!isProd) return { data: USER_MAIN_DATA.find((user) => user.id === +id) };
+            const response = await fetch(`${BASE_URL}/user/${id}`);
+            return await response.json();
         } catch (error) {
             console.error('Error fetching user data:', error);
             throw error;
@@ -23,15 +17,9 @@ export const api = {
 
     async getUserActivityById(id) {
         try {
-            if (isProd) {
-                const response = await fetch(`${BASE_URL}/user/${id}/activity`);
-                return await response.json();
-            }
-            const activityData = USER_ACTIVITY.find((userActivity) => userActivity.userId === parseInt(id));
-            if (!activityData) {
-                throw new Error(`Activity data for user ${id} not found`);
-            }
-            return { data: activityData };
+            if (!isProd) return { data: USER_ACTIVITY.find((userActivity) => userActivity.userId === +id) };
+            const response = await fetch(`${BASE_URL}/user/${id}/activity`);
+            return await response.json();
         } catch (error) {
             console.error('Error fetching user activity:', error);
             throw error;
@@ -40,15 +28,9 @@ export const api = {
 
     async getUserAverageSession(id) {
         try {
-            if (isProd) {
-                const response = await fetch(`${BASE_URL}/user/${id}/average-sessions`);
-                return await response.json();
-            }
-            const sessionData = USER_AVERAGE_SESSIONS.find((userSession) => userSession.userId === parseInt(id));
-            if (!sessionData) {
-                throw new Error(`Session data for user ${id} not found`);
-            }
-            return { data: sessionData };
+            if (!isProd) return { data: USER_AVERAGE_SESSIONS.find((userSession) => userSession.userId === +id) };
+            const response = await fetch(`${BASE_URL}/user/${id}/average-sessions`);
+            return await response.json();
         } catch (error) {
             console.error('Error fetching user sessions:', error);
             throw error;
@@ -57,15 +39,9 @@ export const api = {
 
     async getUserPerformance(id) {
         try {
-            if (isProd) {
-                const response = await fetch(`${BASE_URL}/user/${id}/performance`);
-                return await response.json();
-            }
-            const performanceData = USER_PERFORMANCE.find((userPerformance) => userPerformance.userId === parseInt(id));
-            if (!performanceData) {
-                throw new Error(`Performance data for user ${id} not found`);
-            }
-            return { data: performanceData };
+            if (!isProd) return { data: USER_PERFORMANCE.find((userPerformance) => userPerformance.userId === +id) };
+            const response = await fetch(`${BASE_URL}/user/${id}/performance`);
+            return await response.json();
         } catch (error) {
             console.error('Error fetching user performance:', error);
             throw error;
